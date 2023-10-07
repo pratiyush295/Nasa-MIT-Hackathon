@@ -9,11 +9,37 @@ import math
 from django.contrib.auth.hashers import make_password,check_password
 from django.http import StreamingHttpResponse
 from django.views.decorators import gzip
-
+from app1.models import Authenticator
 model=YOLO('model/model-2.pt')
 
+# pbkdf2_sha256$600000$YzaRneKQIHyrkEyoPN70H0$VEw7JwjlrY/c7QZuM08lgK3Jm9gB04gcF25wx/Kfv8A=
+
+def login(request):
+    context={
+        'message':'yes'
+    }
+    return render(request,'login2.html')
+
+def login_validation(request):
+    print("we are at login oage")
+    context={
+        'message':"wrong id-pass"
+    }
+    if(request.method=='POST'):
+        username=request.POST.get('username')
+        pwd=request.POST.get('password')
+        print(username,pwd)
+        a=Authenticator.objects.all()[0].username
+        b=Authenticator.objects.all()[0].password
+        if a==username and b==pwd:
+            return render(request,'video_stream.html')
+        else:
+            return render(request,'login2.html',context)
+
+    return render(request,'home.html')
 
 def home(request):
+    print(make_password('viit123'))
     return render(request,'home.html')
 
 
