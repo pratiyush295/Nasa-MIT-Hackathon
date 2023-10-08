@@ -306,12 +306,12 @@ nav {
     <br>
     
           
-          <!-- <label for="images" class="drop-container" id="dropcontainer">
+          <label for="images" class="drop-container" id="dropcontainer">
             <span class="drop-title">Drop files here</span>
             
-        </label> -->
-            <!-- <input type="file" id="images" required> -->
-            <input type="file" id="myfile" name="myfile">
+            <input type="file" id="images" required>
+            <!-- <input type="file" id="myfile" name="myfile"> -->
+        </label>
     
     
     <BR>
@@ -355,14 +355,14 @@ nav {
         </form>
         </div>        
     </div>
-    {% if obj %}
+    <!-- {% if obj %}
         <h3>Successfully Uploaded : {{obj.context}}</h3>
         <img src="{{obj.image.url}}" alt="img">
     {% endif %}
     
     {% for img in data %}
         <img src="{{img.image.url}}" alt="images">
-    {% endfor %}
+    {% endfor %} -->
     <script>
          // Function to get the user's location
          function getLocation() {

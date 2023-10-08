@@ -119,7 +119,7 @@ def test(request):
 
 @gzip.gzip_page
 def video_feed(request):
-    cap = cv2.VideoCapture('static/video/vid2.mp4')  # Open the default camera (change index as needed)
+    cap = cv2.VideoCapture('static/video/vid5.mp4')  # Open the default camera (change index as needed)
     def generate():
         fireDetected=0
         firePercentage=0
