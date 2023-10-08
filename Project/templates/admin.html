@@ -97,19 +97,26 @@
 }
     </style>
 </head>
-<body>
+<body style="background:rgb(161, 144, 144);">
     <header>
-        <h1>Two Images Side by Side</h1>
+        <h1 style="color: #e62143; font-size: 40px; font-weight: 700;">Command Center</h1>
     </header>
     <div class="row">
-        <div class="column">
-          <img src="{% url 'video_feed' %}" alt="Snow" style="width:100%">
+        <div class="column" style="padding: 5px; border: 1px solid black;border-radius: 5px;">
+          <img src="{% url 'video_feed' %}" alt="Snow" style="width:100%" height="800px">
         </div>
-        <div class="column">
-          <img src="{% url 'video_feed' %}" alt="Forest" style="width:100%">
+        <div class="column" style="padding: 5px; border: 1px solid black;border-radius: 5px;">
+          <h3 style="text-align:center; color: #e62143; font-size: 30px;">Raised Locations</h3>
+          {% if con %}
+            {% for img in con %}
+            <img src="{{img.image.url}}" alt="images" width="500px" height="100px" style="text-align: center;">
+            <h3>Latitude : {{img.latitude}} | Longitude {{img.longitude}}</h3>
+            <p>{{img.context}}</p>
+            {% endfor %}
+          {% endif %}
         </div>
     </div>
-    <button class="button-44" role="button" align="center"><a href="/optExecutor">Red Alert</a></button>
+    <!-- <button class="button-44" role="button" align="center"><a href="/optExecutor">Red Alert</a></button> -->
 
 </body>
 </html>

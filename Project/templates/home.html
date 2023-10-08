@@ -278,7 +278,7 @@ nav {
 <body>
     <div class="header">
         <nav>
-            <div class="logo"><b>No Fire Zone</b></div>
+            <div class="logo"><b style="color: rgb(245, 54, 73); font-weight: 800;">Fione</b></div>
             <div class="menu">
                 
             </div>
@@ -297,7 +297,8 @@ nav {
 
             <form action="/raiseConcern/" method="post" enctype="multipart/form-data">
                 {%csrf_token%}
-          <h1>Raise A Concern</h1>
+                <!-- {{form.as_p}} -->
+          <h1 style="margin-top: 35px;">Raise A Concern</h1>
     
     
     
@@ -305,11 +306,12 @@ nav {
     <br>
     
           
-          <label for="images" class="drop-container" id="dropcontainer">
+          <!-- <label for="images" class="drop-container" id="dropcontainer">
             <span class="drop-title">Drop files here</span>
             
-            <input type="file" id="images" accept="image/*" required>
-          </label>
+        </label> -->
+            <!-- <input type="file" id="images" required> -->
+            <input type="file" id="myfile" name="myfile">
     
     
     <BR>
@@ -341,19 +343,26 @@ nav {
 
           
           <button type="submit" class="btn" style="border-radius: 12px;">Submit</button>
-          <div>
+          <!-- <div>
               {% if message %}
                   <h3 style="color: red;margin: auto;">Wrong Id-Password</h3>
               {% endif %}
     
-          </div>
+          </div> -->
           <!-- <div class="register-link">
               <p>Dont have an account? <a href="#">Register</a></p>
             </div> -->
         </form>
         </div>        
     </div>
+    {% if obj %}
+        <h3>Successfully Uploaded : {{obj.context}}</h3>
+        <img src="{{obj.image.url}}" alt="img">
+    {% endif %}
     
+    {% for img in data %}
+        <img src="{{img.image.url}}" alt="images">
+    {% endfor %}
     <script>
          // Function to get the user's location
          function getLocation() {

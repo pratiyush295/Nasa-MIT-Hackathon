@@ -1,7 +1,8 @@
 from django import forms
-from .models import ImageWithCharField
+from app1.models import Concern
 
-class ImageWithCharFieldForm(forms.ModelForm):
+class ImageForm(forms.ModelForm):
     class Meta:
-        model = ImageWithCharField
-        fields = ['latitude', 'longitude', 'context','image']
+        model = Concern
+        fields = ('image','context','latitude', 'longitude', )
+        

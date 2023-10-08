@@ -11,8 +11,8 @@ from django.contrib.auth.hashers import make_password,check_password
 from django.http import StreamingHttpResponse
 from django.views.decorators import gzip
 from app1.models import Authenticator,Contact
-from .models import ImageWithCharField
-from .forms import ImageWithCharFieldForm
+from app1.models import Concern
+from .forms import ImageForm
 
 model=YOLO('model/model-2.pt')
 
@@ -20,19 +20,24 @@ model=YOLO('model/model-2.pt')
 # pbkdf2_sha256$600000$YzaRneKQIHyrkEyoPN70H0$VEw7JwjlrY/c7QZuM08lgK3Jm9gB04gcF25wx/Kfv8A=
 
 def raiseConcern(request):
-    if request.method == 'POST':
-        form = ImageWithCharFieldForm(request.POST, request.FILES)
+    print('we are here')
+    if(request.method =='POST'):
+        print('we are here tooo')
+        form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
+            print('form is valid')
             form.save()
-            return redirect('image_list')
-    else:
-        form = ImageWithCharFieldForm()
-    return render(request, 'home.html', {'form': form})
+            obj=form.instance
+            return redirect(request,'home.html')
+    print('yess i got here')
+    form = ImageForm()
+    con=Concern.objects.all()
+    return render(request, 'home.html', {'data':con,'form': form})
+    
 
-
-def image_list(request):
-    images = ImageWithCharField.objects.all()
-    return render(request, 'image_list.html', {'images': images})
+# def image_list(request):
+#     images = ImageWithCharField.objects.all()
+#     return render(request, 'image_list.html', {'images': images})
 
 
 def otpExecutor(entry):
@@ -96,7 +101,8 @@ def login_validation(request):
         a=Authenticator.objects.all()[0].username
         b=Authenticator.objects.all()[0].password
         if a==username and b==pwd:
-            return render(request,'admin.html')
+            con=Concern.objects.all()
+            return render(request,'admin.html',{'con':con})
         else:
             return render(request,'login2.html',context)
 
@@ -113,7 +119,7 @@ def test(request):
 
 @gzip.gzip_page
 def video_feed(request):
-    cap = cv2.VideoCapture('static/video/vid5.mp4')  # Open the default camera (change index as needed)
+    cap = cv2.VideoCapture('static/video/vid2.mp4')  # Open the default camera (change index as needed)
     def generate():
         fireDetected=0
         firePercentage=0
@@ -130,7 +136,7 @@ def video_feed(request):
             if fireResult:
                 if fireDetected==0 and firePercentage>30:
                     entry=Contact.objects.all()
-                    fireDetected=otpExecutor(entry)
+                    # fireDetected=otpExecutor(entry)
 
             for r in fireResult:
                 fireArea=0
