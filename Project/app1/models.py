@@ -30,9 +30,8 @@ class Concern(models.Model):
       latitude=models.CharField(max_length=50)
       longitude=models.CharField(max_length=50)
       context=models.CharField(max_length=100)
-      image = models.ImageField(null=True,upload_to='image/')
-      def __str__(self):
-        return self.context
+      image = models.ImageField(null=True,upload_to='files/',blank=True)
+      
 
 
 # class ConernImage(models.Model):

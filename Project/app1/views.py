@@ -12,28 +12,35 @@ from django.http import StreamingHttpResponse
 from django.views.decorators import gzip
 from app1.models import Authenticator,Contact
 from app1.models import Concern
-from .forms import ImageForm
+# from .forms import ImageForm
 
 model=YOLO('model/model-2.pt')
 
 
 # pbkdf2_sha256$600000$YzaRneKQIHyrkEyoPN70H0$VEw7JwjlrY/c7QZuM08lgK3Jm9gB04gcF25wx/Kfv8A=
 
+    # print('we are here')
+    # if(request.method =='POST'):
+    #     print('we are here tooo')
+    #     form = ImageForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         print('form is valid')
+    #         form.save()
+    #         obj=form.instance
+    #         return redirect(request,'home.html')
+    # print('yess i got here')
+    # form = ImageForm()
+    # con=Concern.objects.all()
+    # return render(request, 'home.html', {'data':con,'form': form})
 def raiseConcern(request):
-    print('we are here')
-    if(request.method =='POST'):
-        print('we are here tooo')
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            print('form is valid')
-            form.save()
-            obj=form.instance
-            return redirect(request,'home.html')
-    print('yess i got here')
-    form = ImageForm()
-    con=Concern.objects.all()
-    return render(request, 'home.html', {'data':con,'form': form})
-    
+    if(request.method=='POST'):
+        lat=request.POST.get('lat')
+        lon=request.POST.get('lon')
+        context=request.POST.get('context')
+        img=request.FILES['image']
+        con=Concern(latitude=lat,longitude=lon,context=context,image=img)
+        con.save()
+    return render(request,'home.html')
 
 # def image_list(request):
 #     images = ImageWithCharField.objects.all()
