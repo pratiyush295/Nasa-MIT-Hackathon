@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Images Side by Side</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+           
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            object-fit: contain;
+        }
+        .image {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .image:last-child {
+            margin-right: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        * {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  height:max-content;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.button-44 {
+  background: #e62143;
+  margin: auto;
+  border-radius: 11px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-family: Mija,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif;
+  font-size: 1.15em;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 33.4929px;
+  padding: .8em 1em;
+  text-align: center;
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  text-shadow: rgba(0, 0, 0, .3) 1px 1px 1px;
+  text-underline-offset: 1px;
+  transition: all .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+ 
+  word-break: break-word;
+  border: 0;
+}
+
+.button-44:active,
+.button-44:focus {
+  border-bottom-style: none;
+  border-color: #dadada;
+  box-shadow: rgba(0, 0, 0, .3) 0 3px 3px inset;
+  outline: 0;
+}
+
+.button-44:hover {
+  border-bottom-style: none;
+  border-color: #dadada;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Two Images Side by Side</h1>
+    </header>
+    <div class="row">
+        <div class="column">
+          <img src="{% url 'video_feed' %}" alt="Snow" style="width:100%">
+        </div>
+        <div class="column">
+          <img src="{% url 'video_feed' %}" alt="Forest" style="width:100%">
+        </div>
+    </div>
+    <button class="button-44" role="button" align="center"><a href="/optExecutor">Red Alert</a></button>
+
+</body>
+</html>

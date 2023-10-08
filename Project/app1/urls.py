@@ -11,4 +11,7 @@ urlpatterns = [
     path('test/',views.test,name='test'),
     path('login/',views.login,name="login"),
     path('login_validation/',views.login_validation,name='login_validation'),
+    path('addNumber/',views.addNumber,name='addNumber'),
+    path('register_validation/',views.register_validation,name='register_validation'),
+    path('raiseConcern/',views.raiseConcern,name="raiseConcern")
 ]
